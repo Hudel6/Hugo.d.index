@@ -1,0 +1,715 @@
+<html lang="en"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Hugo Mendes Delgado — Creative Portfolio</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,600;1,300;1,400&amp;family=Jost:wght@300;400;500&amp;display=swap" rel="stylesheet">
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --gold: #B8973A;
+    --gold-light: #D4AF6A;
+    --gold-pale: #F5EDD8;
+    --off-white: #FAFAF7;
+    --ink: #1A1A18;
+    --ink-soft: #3D3D38;
+    --mid: #7A7A72;
+    --border: rgba(184,151,58,0.18);
+    --serif: 'Cormorant Garamond', Georgia, serif;
+    --sans: 'Jost', sans-serif;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    font-family: var(--sans);
+    background: var(--off-white);
+    color: var(--ink);
+    font-size: 16px;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* NAV */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1.25rem 4rem;
+    background: rgba(250,250,247,0.92);
+    backdrop-filter: blur(12px);
+    border-bottom: 0.5px solid var(--border);
+  }
+  .nav-logo {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    color: var(--ink);
+    text-decoration: none;
+  }
+  .nav-logo span { color: var(--gold); }
+  .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+  .nav-links a {
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--mid);
+    text-decoration: none;
+    transition: color 0.2s;
+  }
+  .nav-links a:hover { color: var(--gold); }
+
+  /* HERO */
+  .hero {
+    min-height: 100vh;
+    display: flex; flex-direction: column; justify-content: center; align-items: center;
+    text-align: center;
+    padding: 8rem 2rem 5rem;
+    position: relative;
+    overflow: hidden;
+  }
+  .hero::before {
+    content: '';
+    position: absolute; inset: 0;
+    background: radial-gradient(ellipse 60% 50% at 50% 60%, rgba(184,151,58,0.07) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .hero-cross {
+    font-size: 0.75rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 2rem;
+    display: flex; align-items: center; gap: 1rem;
+  }
+  .hero-cross::before, .hero-cross::after {
+    content: ''; display: block;
+    width: 48px; height: 0.5px;
+    background: var(--gold-light);
+  }
+  .hero h1 {
+    font-family: var(--serif);
+    font-size: clamp(3.2rem, 8vw, 7rem);
+    font-weight: 300;
+    line-height: 1.05;
+    letter-spacing: -0.01em;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .hero h1 em {
+    font-style: italic;
+    color: var(--gold);
+  }
+  .hero-subtitle {
+    font-size: 0.8rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: var(--mid);
+    margin-bottom: 2.5rem;
+  }
+  .hero-scripture {
+    font-family: var(--serif);
+    font-size: 1.15rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 520px;
+    line-height: 1.7;
+    border-left: 2px solid var(--gold-light);
+    padding-left: 1.25rem;
+    text-align: left;
+    margin-bottom: 3rem;
+  }
+  .hero-scripture cite {
+    display: block;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.5rem;
+  }
+  .hero-cta {
+    display: inline-flex; align-items: center; gap: 0.75rem;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-decoration: none;
+    border: 0.5px solid var(--gold);
+    padding: 0.85rem 2.2rem;
+    transition: background 0.25s, color 0.25s;
+  }
+  .hero-cta:hover { background: var(--gold); color: white; }
+  .scroll-hint {
+    position: absolute; bottom: 2.5rem; left: 50%; transform: translateX(-50%);
+    display: flex; flex-direction: column; align-items: center; gap: 0.5rem;
+    font-size: 0.7rem; letter-spacing: 0.14em; text-transform: uppercase; color: var(--mid);
+    animation: fadeUp 1.2s ease 0.8s both;
+  }
+  .scroll-line { width: 0.5px; height: 40px; background: linear-gradient(to bottom, var(--gold), transparent); }
+
+  /* SECTION BASE */
+  section { padding: 7rem 4rem; }
+  .section-label {
+    font-size: 0.7rem;
+    letter-spacing: 0.22em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 1rem;
+  }
+  .section-title {
+    font-family: var(--serif);
+    font-size: clamp(2.2rem, 4vw, 3.5rem);
+    font-weight: 300;
+    line-height: 1.15;
+    color: var(--ink);
+    margin-bottom: 1.5rem;
+  }
+  .section-title em { font-style: italic; color: var(--gold); }
+  .divider {
+    width: 48px; height: 0.5px;
+    background: var(--gold-light);
+    margin-bottom: 3rem;
+  }
+
+  /* ABOUT */
+  .about {
+    background: white;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 6rem;
+    align-items: center;
+  }
+  .about-text p {
+    color: var(--ink-soft);
+    margin-bottom: 1.25rem;
+    font-size: 0.97rem;
+    line-height: 1.85;
+  }
+  .about-scripture {
+    background: var(--gold-pale);
+    border-left: 3px solid var(--gold);
+    padding: 1.5rem 1.75rem;
+    margin-top: 2rem;
+    border-radius: 0 4px 4px 0;
+  }
+  .about-scripture p {
+    font-family: var(--serif);
+    font-size: 1.1rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem !important;
+  }
+  .about-scripture cite {
+    font-size: 0.7rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    font-style: normal;
+  }
+  .about-visual {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    align-items: center;
+  }
+  .initials-mark {
+    width: 160px; height: 160px;
+    border: 0.5px solid var(--border);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    flex-shrink: 0;
+  }
+  .initials-mark::before {
+    content: ''; position: absolute; inset: 8px;
+    border: 0.5px solid var(--gold-light);
+    border-radius: 50%;
+  }
+  .initials-mark span {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    font-weight: 300;
+    color: var(--gold);
+    letter-spacing: -0.02em;
+  }
+  .about-details {
+    width: 100%;
+    display: flex; flex-direction: column; gap: 0.75rem;
+  }
+  .detail-row {
+    display: flex; justify-content: space-between; align-items: baseline;
+    padding: 0.6rem 0;
+    border-bottom: 0.5px solid var(--border);
+    font-size: 0.85rem;
+  }
+  .detail-row .label { color: var(--mid); letter-spacing: 0.06em; }
+  .detail-row .value { color: var(--ink); font-weight: 500; }
+  .detail-row a { color: var(--gold); text-decoration: none; }
+  .detail-row a:hover { text-decoration: underline; }
+
+  /* PHILOSOPHY */
+  .philosophy {
+    text-align: center;
+    background: var(--ink);
+    color: white;
+    padding: 7rem 4rem;
+  }
+  .philosophy .section-label { color: var(--gold-light); }
+  .philosophy .section-title { color: white; }
+  .philosophy .divider { background: var(--gold); margin: 0 auto 3rem; }
+  .philosophy-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 3rem;
+    max-width: 900px;
+    margin: 0 auto 4rem;
+    text-align: left;
+  }
+  .phil-item {}
+  .phil-num {
+    font-family: var(--serif);
+    font-size: 3rem;
+    font-weight: 300;
+    color: var(--gold);
+    line-height: 1;
+    margin-bottom: 0.75rem;
+    opacity: 0.6;
+  }
+  .phil-title {
+    font-family: var(--serif);
+    font-size: 1.3rem;
+    font-weight: 400;
+    color: white;
+    margin-bottom: 0.6rem;
+  }
+  .phil-body {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.55);
+    line-height: 1.8;
+  }
+  .phil-scripture-block {
+    max-width: 640px;
+    margin: 0 auto;
+    border-top: 0.5px solid rgba(184,151,58,0.3);
+    padding-top: 3rem;
+  }
+  .phil-scripture-block p {
+    font-family: var(--serif);
+    font-size: 1.5rem;
+    font-style: italic;
+    font-weight: 300;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.6;
+    margin-bottom: 1rem;
+  }
+  .phil-scripture-block cite {
+    font-size: 0.7rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+    color: var(--gold);
+  }
+
+  /* PROCESS */
+  .process { background: var(--off-white); }
+  .process-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 2px;
+    margin-top: 0;
+  }
+  .process-step {
+    background: white;
+    padding: 2.5rem;
+    border: 0.5px solid var(--border);
+    transition: border-color 0.2s;
+    position: relative;
+  }
+  .process-step:hover { border-color: var(--gold-light); }
+  .step-num {
+    font-family: var(--serif);
+    font-size: 4rem;
+    font-weight: 300;
+    color: var(--gold-pale);
+    line-height: 1;
+    position: absolute;
+    top: 1.5rem; right: 2rem;
+  }
+  .step-icon {
+    width: 40px; height: 40px;
+    border: 0.5px solid var(--gold-light);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 1.25rem;
+    color: var(--gold);
+    font-size: 1rem;
+  }
+  .step-title {
+    font-family: var(--serif);
+    font-size: 1.4rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.5rem;
+  }
+  .step-body {
+    font-size: 0.88rem;
+    color: var(--mid);
+    line-height: 1.8;
+  }
+  .step-scripture {
+    margin-top: 1.25rem;
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 0.9rem;
+    color: var(--gold);
+  }
+  .step-scripture cite {
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    opacity: 0.7;
+    margin-left: 0.4rem;
+  }
+
+  /* WORK */
+  .work { background: white; }
+  .work-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 2rem;
+    margin-top: 1rem;
+  }
+  .work-card {
+    border: 0.5px solid var(--border);
+    overflow: hidden;
+    transition: transform 0.25s, border-color 0.25s;
+    cursor: pointer;
+  }
+  .work-card:hover { transform: translateY(-4px); border-color: var(--gold-light); }
+  .work-thumb {
+    aspect-ratio: 4/3;
+    background: var(--gold-pale);
+    display: flex; align-items: center; justify-content: center;
+    position: relative;
+    overflow: hidden;
+  }
+  .work-thumb-inner {
+    font-family: var(--serif);
+    font-size: 3.5rem;
+    color: rgba(184,151,58,0.3);
+    font-weight: 300;
+  }
+  .work-thumb-label {
+    position: absolute; bottom: 1rem; left: 1rem;
+    font-size: 0.65rem;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: var(--gold);
+    background: white;
+    padding: 0.3rem 0.7rem;
+  }
+  .work-thumb-2 { background: #F0EDE6; }
+  .work-thumb-3 { background: #EDF0EA; }
+  .work-info { padding: 1.5rem; }
+  .work-title {
+    font-family: var(--serif);
+    font-size: 1.25rem;
+    font-weight: 400;
+    color: var(--ink);
+    margin-bottom: 0.4rem;
+  }
+  .work-desc { font-size: 0.82rem; color: var(--mid); line-height: 1.7; }
+
+  /* CONTACT */
+  .contact {
+    background: var(--off-white);
+    text-align: center;
+    padding: 7rem 4rem;
+  }
+  .contact-scripture {
+    font-family: var(--serif);
+    font-size: 1.2rem;
+    font-style: italic;
+    color: var(--ink-soft);
+    max-width: 500px;
+    margin: 0 auto 3rem;
+    line-height: 1.7;
+  }
+  .contact-scripture cite {
+    display: block;
+    font-style: normal;
+    font-family: var(--sans);
+    font-size: 0.68rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-top: 0.5rem;
+  }
+  .contact-links {
+    display: flex; justify-content: center; gap: 2rem; flex-wrap: wrap;
+    margin-top: 2.5rem;
+  }
+  .contact-link {
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--ink-soft);
+    text-decoration: none;
+    border-bottom: 0.5px solid var(--border);
+    padding-bottom: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+  .contact-link:hover { color: var(--gold); border-color: var(--gold); }
+
+  /* FOOTER */
+  footer {
+    background: var(--ink);
+    color: rgba(255,255,255,0.4);
+    text-align: center;
+    padding: 2.5rem;
+    font-size: 0.75rem;
+    letter-spacing: 0.08em;
+  }
+  footer span { color: var(--gold); }
+
+  /* ANIMATIONS */
+  @keyframes fadeUp {
+    from { opacity: 0; transform: translateY(20px) translateX(-50%); }
+    to   { opacity: 1; transform: translateY(0) translateX(-50%); }
+  }
+  .fade-in {
+    opacity: 0;
+    transform: translateY(24px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    nav { padding: 1rem 1.5rem; }
+    .nav-links { display: none; }
+    section { padding: 5rem 1.5rem; }
+    .about { grid-template-columns: 1fr; gap: 3rem; }
+    .philosophy-grid { grid-template-columns: 1fr; gap: 2rem; }
+    .process-grid { grid-template-columns: 1fr; }
+    .work-grid { grid-template-columns: 1fr; }
+    .contact { padding: 5rem 1.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <a href="#" class="nav-logo">Hugo <span>✦</span> Mendes Delgado</a>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#philosophy">Philosophy</a></li>
+    <li><a href="#process">Process</a></li>
+    <li><a href="#work">Work</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-cross">Creative Portfolio</div>
+  <h1>Hugo<br><em>Mendes Delgado</em></h1>
+  <p class="hero-subtitle">Design &amp; Creative Direction — London</p>
+  <blockquote class="hero-scripture">
+    Whatever you do, work at it with all your heart, as working for the Lord, not for human masters.
+    <cite>— Colossians 3:23</cite>
+  </blockquote>
+  <a href="#work" class="hero-cta">View My Work ↓</a>
+  <div class="scroll-hint">
+    <div class="scroll-line"></div>
+    Scroll
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="about" id="about">
+  <div class="about-text fade-in visible">
+    <p class="section-label">About</p>
+    <h2 class="section-title">Rooted in <em>faith</em>,<br>driven by craft.</h2>
+    <div class="divider"></div>
+    <p>I'm Hugo Mendes Delgado — a London-based creative with a passion for design that communicates with depth and intention. My journey in the creative world has been shaped not just by craft, but by a conviction that beauty and purpose go hand in hand.</p>
+    <p>Educated at Sedgehill School, I've grown into a designer who believes that the most powerful work is anchored in something greater than aesthetics alone. Every project I undertake is an act of stewardship — honouring the gifts I've been given and the clients who trust me with their vision.</p>
+    <p>My work spans branding, visual design, and creative direction, always with a commitment to excellence and meaning. I am connected to the wider creative community through LinkedIn and am always open to purposeful collaboration.</p>
+    <blockquote class="about-scripture">
+      <p>I can do all things through Christ who strengthens me.</p>
+      <cite>— Philippians 4:13</cite>
+    </blockquote>
+  </div>
+  <div class="about-visual fade-in visible">
+    <div class="initials-mark">
+      <span>HMD</span>
+    </div>
+    <div class="about-details">
+      <div class="detail-row"><span class="label">Name</span><span class="value">Hugo Mendes Delgado</span></div>
+      <div class="detail-row"><span class="label">Education</span><span class="value">Sedgehill School</span></div>
+      <div class="detail-row"><span class="label">Based</span><span class="value">London, UK</span></div>
+      <div class="detail-row"><span class="label">Discipline</span><span class="value">Design &amp; Creative</span></div>
+      <div class="detail-row"><span class="label">LinkedIn</span><a href="https://www.linkedin.com/in/hugo-delgado" target="_blank" class="value">Hugo Delgado</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- PHILOSOPHY -->
+<section class="philosophy" id="philosophy">
+  <p class="section-label">My Philosophy</p>
+  <h2 class="section-title">Design as <em>devotion.</em></h2>
+  <div class="divider"></div>
+  <div class="philosophy-grid">
+    <div class="phil-item fade-in visible">
+      <div class="phil-num">I</div>
+      <div class="phil-title">Purpose over aesthetics</div>
+      <p class="phil-body">Great design is never decoration alone. Every choice — colour, form, space — must carry intention. I design to communicate, to move, and to serve.</p>
+    </div>
+    <div class="phil-item fade-in visible">
+      <div class="phil-num">II</div>
+      <div class="phil-title">Excellence as worship</div>
+      <p class="phil-body">My faith calls me to give my very best in everything I do. Mediocrity is not an option when you understand that your work is ultimately an offering.</p>
+    </div>
+    <div class="phil-item fade-in visible">
+      <div class="phil-num">III</div>
+      <div class="phil-title">Integrity in every detail</div>
+      <p class="phil-body">Honesty, transparency, and care are not soft values — they are the foundation of lasting work and lasting relationships with the people I serve.</p>
+    </div>
+  </div>
+  <div class="phil-scripture-block fade-in visible">
+    <p>In the beginning was the Word, and the Word was with God, and the Word was God.</p>
+    <cite>— John 1:1 &nbsp;·&nbsp; The source of all creation and creativity</cite>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="process" id="process">
+  <div style="max-width:680px;">
+    <p class="section-label">Design Process</p>
+    <h2 class="section-title">How I <em>work.</em></h2>
+    <div class="divider"></div>
+  </div>
+  <div class="process-grid">
+    <div class="process-step fade-in visible">
+      <div class="step-num">01</div>
+      <div class="step-icon">◈</div>
+      <h3 class="step-title">Discover &amp; Listen</h3>
+      <p class="step-body">Every project begins with deep listening — to the client, to the brief, and to the purpose behind the work. I ask questions until I understand not just what is needed, but why it matters.</p>
+      <p class="step-scripture">"Let every person be quick to hear, slow to speak." <cite>— James 1:19</cite></p>
+    </div>
+    <div class="process-step fade-in visible">
+      <div class="step-num">02</div>
+      <div class="step-icon">◇</div>
+      <h3 class="step-title">Research &amp; Understand</h3>
+      <p class="step-body">I immerse myself in the context — the audience, the market, the cultural landscape. Good design is always informed design. I never begin creating before I truly understand the terrain.</p>
+      <p class="step-scripture">"The heart of the discerning acquires knowledge." <cite>— Proverbs 18:15</cite></p>
+    </div>
+    <div class="process-step fade-in visible">
+      <div class="step-num">03</div>
+      <div class="step-icon">✦</div>
+      <h3 class="step-title">Concept &amp; Craft</h3>
+      <p class="step-body">With clear understanding comes bold creativity. I develop concepts that are distinctive, purposeful, and refined — exploring multiple directions before committing to the most resonant solution.</p>
+      <p class="step-scripture">"He has filled them with skill to do all kinds of work." <cite>— Exodus 35:35</cite></p>
+    </div>
+    <div class="process-step fade-in visible">
+      <div class="step-num">04</div>
+      <div class="step-icon">◉</div>
+      <h3 class="step-title">Refine &amp; Perfect</h3>
+      <p class="step-body">Design is never done at the first pass. I refine obsessively — adjusting proportion, tone, and detail until every element is precisely where it should be. The difference between good and excellent lives in this stage.</p>
+      <p class="step-scripture">"And whatever you do, do it heartily, as to the Lord." <cite>— Colossians 3:23</cite></p>
+    </div>
+    <div class="process-step fade-in visible">
+      <div class="step-num">05</div>
+      <div class="step-icon">○</div>
+      <h3 class="step-title">Deliver &amp; Steward</h3>
+      <p class="step-body">Delivery is not the end — it's the beginning of a relationship. I ensure every project is handed over with care, clarity, and the resources needed for it to thrive in the world.</p>
+      <p class="step-scripture">"Well done, good and faithful servant." <cite>— Matthew 25:21</cite></p>
+    </div>
+    <div class="process-step fade-in visible">
+      <div class="step-num">06</div>
+      <div class="step-icon">☩</div>
+      <h3 class="step-title">Reflect &amp; Grow</h3>
+      <p class="step-body">After every project I reflect — what worked, what I learned, how I can be better. Growth is a discipline, not an accident. I am always a student of the craft.</p>
+      <p class="step-scripture">"As iron sharpens iron, so one person sharpens another." <cite>— Proverbs 27:17</cite></p>
+    </div>
+  </div>
+</section>
+
+<!-- WORK -->
+<section class="work" id="work">
+  <p class="section-label">Selected Work</p>
+  <h2 class="section-title">Projects with <em>purpose.</em></h2>
+  <div class="divider"></div>
+  <div class="work-grid">
+    <div class="work-card fade-in visible">
+      <div class="work-thumb work-thumb-1">
+        <div class="work-thumb-inner">✦</div>
+        <span class="work-thumb-label">Branding</span>
+      </div>
+      <div class="work-info">
+        <h3 class="work-title">Brand Identity</h3>
+        <p class="work-desc">A comprehensive identity system built around clarity, character, and lasting impression. Add your project details here.</p>
+      </div>
+    </div>
+    <div class="work-card fade-in visible">
+      <div class="work-thumb work-thumb-2">
+        <div class="work-thumb-inner">◈</div>
+        <span class="work-thumb-label">Print</span>
+      </div>
+      <div class="work-info">
+        <h3 class="work-title">Editorial Design</h3>
+        <p class="work-desc">Thoughtful print and editorial work where typography and image come together with precision and intent. Add your project details here.</p>
+      </div>
+    </div>
+    <div class="work-card fade-in visible">
+      <div class="work-thumb work-thumb-3">
+        <div class="work-thumb-inner">◇</div>
+        <span class="work-thumb-label">Digital</span>
+      </div>
+      <div class="work-info">
+        <h3 class="work-title">Digital Creative</h3>
+        <p class="work-desc">Digital-first creative direction with a considered aesthetic and user-centred approach. Add your project details here.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section class="contact" id="contact">
+  <p class="section-label">Get in Touch</p>
+  <h2 class="section-title">Let's create something <em>meaningful.</em></h2>
+  <div class="divider" style="margin: 0 auto 1.5rem;"></div>
+  <p class="contact-scripture">
+    For we are God's handiwork, created in Christ Jesus to do good works, which God prepared in advance for us to do.
+    <cite>— Ephesians 2:10</cite>
+  </p>
+  <p style="color: var(--mid); font-size: 0.9rem; max-width: 440px; margin: 0 auto;">
+    I'm always open to purposeful collaboration — whether you have a project in mind or simply want to connect.
+  </p>
+  <div class="contact-links">
+    <a href="https://www.linkedin.com/in/hugo-delgado" target="_blank" class="contact-link">LinkedIn</a>
+    <a href="mailto:hello@hugomendesdelgado.com" class="contact-link">Email</a>
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <p>© 2025 Hugo Mendes Delgado &nbsp;·&nbsp; <span>"To God be the glory"</span> &nbsp;·&nbsp; All rights reserved</p>
+</footer>
+
+<script>
+const observer = new IntersectionObserver((entries) => {
+  entries.forEach((e, i) => {
+    if (e.isIntersecting) {
+      setTimeout(() => e.target.classList.add('visible'), i * 80);
+    }
+  });
+}, { threshold: 0.12 });
+document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+</script>
+
+
+</body></html>
